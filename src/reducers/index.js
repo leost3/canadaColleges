@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import  fetchCities  from '../reducers/fetchCities';
+import {setSearchFieldReducer} from './changeSearchFieldReducer'
+import {fetchCitiesReducer} from './fetchCitiesReducer';
+
 
 export default combineReducers({
-    cities: fetchCities,
-})
+    cities: fetchCitiesReducer,
+    text: setSearchFieldReducer
+});

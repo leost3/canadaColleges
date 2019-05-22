@@ -1,11 +1,37 @@
 import React from 'react';
 import './App.css';
+import SearchBox from '../components/SearchBox';
 import CitiesList from '../components/CitiesList';
+import { connect } from 'react-redux';
+import {fetchCities, setSearchField} from '../actions'
 
-function App() {
-  return (
-    <div><CitiesList /></div>
-  );
+class App extends React.Component{
+
+    componentDidMount() {
+        this.props.onRequestCities();
+    }
+
+
+    render() {
+        console.log(this.props)
+        const { cities } = this.props;
+        return (
+            <div>
+                <SearchBox />
+                <CitiesList cities={cities} />
+            </div>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  cities: state.cities,
+  text: state.text
+});
+
+const mapDispatchToProps = dispatch => ({
+    onRequestCities: () => dispatch(fetchCities()),
+    onSearchChange: () => dispatch(setSearchField('lolololololol')),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

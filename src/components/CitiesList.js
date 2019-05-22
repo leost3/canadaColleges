@@ -1,44 +1,23 @@
 import React from 'react';
-import {requestCities} from '../actions';
-import { connect } from 'react-redux';
-import * as citiesArray from '../data/cities';
+// import City from './City';
 
-
-class CitiesList extends React.Component{
-    componentDidMount() {
-        this.props.requestCities();
-    }
-
-
-    renderCitiesList = () => {
-        const {cities } = this.props;
-        return cities.map((city, i) => {
-            if (citiesArray.default.includes(city.city)) {
-                return (
-                    <div style={{display:'block'}}>
-                        <h1>{i+1}.{city.city}</h1>
-                    </div>
-                );
-            }
-        });
-    };
-
-    render() {
+const CitiesList = ({cities}) => {
+    const cityArr = cities.map (city => {
         return (
             <div>
-                {this.renderCitiesList()}
+                <img src="photos/calgary.jpg" alt={city.city} />
+                <h1>{city.city}</h1>
+                <h1>{city.admin}</h1>
             </div>
         );
-    };
+    });
+  
+    return (
+        <div>
+            {cityArr}
+            {/* <City /> */}
+        </div>
+    );
 };
 
-const mapStateToProps = state => ({
-  cities: state.cities
-});
-
-// const  mapDispatchToProps = dispatch => ({
-//     onRequest: () => dispatch(requestCities())
-// })
-  
-
-export default connect(mapStateToProps, {requestCities})(CitiesList);
+export default CitiesList;
