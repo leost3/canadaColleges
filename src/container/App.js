@@ -14,10 +14,10 @@ class App extends React.Component{
 
     render() {
         console.log(this.props)
-        const { cities } = this.props;
+        const { cities, onSearchChange } = this.props;
         return (
             <div>
-                <SearchBox />
+                <SearchBox onSearchChange={onSearchChange}/>
                 <CitiesList cities={cities} />
             </div>
         )
@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onRequestCities: () => dispatch(fetchCities()),
-    onSearchChange: () => dispatch(setSearchField('lolololololol')),
+    onSearchChange: (e) => dispatch(setSearchField(e.target.value)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
