@@ -1,11 +1,12 @@
 import React from 'react';
 
-const SearchBox = ({onSearchChange}) => {
+
+const SearchBox = ({onSearch}) => {
     return (
         <div>
-            <input onChange={onSearchChange} type="search" />
+            <input onChange={onSearch} type='search' />
         </div>
-    );
-};
+    )
+}
 
 export default SearchBox;

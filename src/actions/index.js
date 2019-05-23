@@ -1,16 +1,14 @@
-import * as cittiesArr from '../data/canada.json';
+
+import cityArray from '../data/canada.json'
 
 
-export const fetchCities = () => {
-    return {
-        type: 'FETCH_CITIES',
-        payload: cittiesArr.default
-    };
-};
+export const fetchCities = () => ({
+    type: 'FETCH_CITIES',
+    payload: cityArray
+});
 
-export const setSearchField = (text) => {
-    return {
-        type: 'CHANGE_SEARCH_FIELD',
-        payload: text
-    }
-}
+
+export const textChange = (text) => ({
+    type: 'TEXT_CHANGE',
+    payload: text
+});

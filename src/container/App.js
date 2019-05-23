@@ -1,37 +1,29 @@
 import React from 'react';
-import './App.css';
 import SearchBox from '../components/SearchBox';
 import CitiesList from '../components/CitiesList';
 import { connect } from 'react-redux';
-import {fetchCities, setSearchField} from '../actions'
+import {textChange} from '../actions';
+
 
 class App extends React.Component{
-
-    componentDidMount() {
-        this.props.onRequestCities();
-    }
-
-
     render() {
-        console.log(this.props)
-        const { cities, onSearchChange } = this.props;
+        const {searchField } = this.props;
         return (
             <div>
-                <SearchBox onSearchChange={onSearchChange}/>
-                <CitiesList cities={cities} />
+                <SearchBox onSearch={this.props.onSearch}  />
+                <CitiesList searchField={searchField}/>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 const mapStateToProps = state => ({
-  cities: state.cities,
-  text: state.text
+    searchField: state.searchField.searchField
 });
 
 const mapDispatchToProps = dispatch => ({
-    onRequestCities: () => dispatch(fetchCities()),
-    onSearchChange: (e) => dispatch(setSearchField(e.target.value)),
-})
+    onSearch: (e) => dispatch(textChange(e.target.value))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
